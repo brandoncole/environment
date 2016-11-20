@@ -103,12 +103,18 @@ function installDefaults() {
     defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
 
 }
+
+function installDotfiles() {
+    rsync -rv ./dotfiles/ ~/
+}
+
 function install() {
 
     installHomebrew
     installBrews
     installPlugins
     installDefaults
+    installDotfiles
 
 }
 
