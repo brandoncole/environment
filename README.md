@@ -10,7 +10,7 @@ This is a WIP.
 
     ```shell
     DEST=~/environment
-    git clone git@github.com:brandoncole/environment $DEST
+    git clone https://github.com/brandoncole/environment $DEST
     cd $DEST
     ./bootstrap.sh
     ```
