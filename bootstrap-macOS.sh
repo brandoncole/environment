@@ -132,7 +132,7 @@ function installDefaults() {
 }
 
 function installDotfiles() {
-    rsync -rv ./dotfiles/ ~/
+    cp ./dotfiles/bash_profile.sh ~/.bash_profile && source ~/.bash_profile
 }
 
 function install() {
@@ -143,6 +143,11 @@ function install() {
     installDefaults
     installDotfiles
 
+}
+
+function update() {
+    installDefaults
+    installDotfiles
 }
 
 if [[ -z "$1" ]]; then
