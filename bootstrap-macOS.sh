@@ -49,6 +49,9 @@ function installBrews() {
         brew cask install $cask
     done
 
+    # Open docker so that it sets itself up...
+    open -g -a Docker
+
     brew cleanup
 
 }
@@ -94,13 +97,37 @@ function installDefaults() {
     # -------------------------------------------------------------------------
     # Keyboard
     # -------------------------------------------------------------------------
-    defaults write -globalDomain InitialKeyRepeat -int 10
-    defaults write -globalDomain KeyRepeat -int 1
+    defaults write -g InitialKeyRepeat -int 10
+    defaults write -g KeyRepeat -int 0
 
     # -------------------------------------------------------------------------
     # Trackpad
     # -------------------------------------------------------------------------
     defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+
+    # -------------------------------------------------------------------------
+    # Activity Monitor
+    # -------------------------------------------------------------------------
+
+    # Show the main window when launching Activity Monitor
+    defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+    # Visualize CPU usage in the Activity Monitor Dock icon
+    defaults write com.apple.ActivityMonitor IconType -int 5
+
+    # Show all processes in Activity Monitor
+    defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+    # Sort Activity Monitor results by CPU usage
+    defaults write com.apple.ActivityMonitor SortColumn -string "CPU"
+    defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+    # -------------------------------------------------------------------------
+    # Finder
+    # -------------------------------------------------------------------------
+
+    # Show all extensions
+    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 }
 
