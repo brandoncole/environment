@@ -8,7 +8,9 @@ alias k=kubectl
 # Environment
 export GOPATH=~/Workspace/go
 mkdir -p $GOPATH
-export GOROOT=$(cd "$(dirname $(which go))/$(dirname $(readlink $(which go)))" && pwd)
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 # Functions
 function update() {
