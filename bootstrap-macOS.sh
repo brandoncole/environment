@@ -129,6 +129,17 @@ function installDefaults() {
     # Show all extensions
     defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+    # Finder: show status bar
+    defaults write com.apple.finder ShowStatusBar -bool true
+
+    # Finder: show path bar
+    defaults write com.apple.finder ShowPathbar -bool true
+
+    # -------------------------------------------------------------------------
+    # iTerm2
+    # -------------------------------------------------------------------------
+    defaults write com.googlecode.iterm2 PromptOnQuit -int 0
+
 }
 
 function installDotfiles() {
