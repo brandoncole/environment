@@ -41,6 +41,7 @@ function installBrews() {
         google-drive
         iterm2
         licecap
+        skype
         slack
         webstorm
     )
