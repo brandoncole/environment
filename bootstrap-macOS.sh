@@ -40,6 +40,7 @@ function installBrews() {
         google-cloud-sdk
         google-drive
         iterm2
+        kindle
         licecap
         skype
         slack
