@@ -41,6 +41,7 @@ function installBrews() {
         google-drive
         iterm2
         kindle
+        lastpass
         licecap
         skype
         slack
@@ -53,6 +54,9 @@ function installBrews() {
 
     # Open docker so that it sets itself up...
     open -g -a Docker
+
+    # Complete lastpass installation...
+    open -a "/usr/local/Caskroom/lastpass/latest/LastPass Installer.app"
 
     brew cleanup
 
