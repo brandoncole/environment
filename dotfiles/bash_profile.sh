@@ -39,7 +39,13 @@ function aws_login() {
 # Switches to a profile configured via aws configure --profile profileid
 # e.g. aws_profile profileid
 function aws_profile() {
+
+    # Why there's 2...
+    # https://aws.amazon.com/blogs/security/a-new-and-standardized-way-to-manage-credentials-in-the-aws-sdks/
+    # http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+
     local profile=$1
+    export AWS_PROFILE=$profile
     export AWS_DEFAULT_PROFILE=$profile
 }
 
