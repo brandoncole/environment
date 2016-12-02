@@ -78,3 +78,7 @@ function aws_security_groups() {
 function aws_route_tables() {
     aws ec2 describe-route-tables $@ --query 'RouteTables[*][(Tags[?Key==`Name`].Value)[0], RouteTableId, VpcId, (Routes[?VpcPeeringConnectionId][VpcPeeringConnectionId, DestinationCidrBlock][])[1]]'  --output text | column -t | sort
 }
+
+function aws_volumes() {
+    aws ec2 describe-volumes $@ --query 'Volumes[*][VolumeId, AvailabilityZone, VolumeType, Size, Iops, State, (Tags[?Key==`Name`].Value)[0]]' --output text | column -t -c 4 | sort
+}
