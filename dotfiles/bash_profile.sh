@@ -27,15 +27,6 @@ function update() {
 # AWS Utilities
 # -----------------------------------------------------------------------------
 
-# Performs 2FA for CLI
-# e.g. aws_login 1234567890 username 123456
-function aws_login() {
-    local account=$1
-    local user=$2
-    local token=$3
-    aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token
-}
-
 # Switches to a profile configured via aws configure --profile profileid
 # e.g. aws_profile profileid
 function aws_profile() {
@@ -47,6 +38,25 @@ function aws_profile() {
     local profile=$1
     export AWS_PROFILE=$profile
     export AWS_DEFAULT_PROFILE=$profile
+}
+
+# Performs 2FA for CLI
+# e.g. aws_login 1234567890 username 123456
+function aws_login() {
+
+    local account=$1
+    local user=$2
+    local token=$3
+
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+
+    local credentials=`aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token`
+
+    export AWS_ACCESS_KEY_ID=`echo $credentials | jq -r .Credentials.AccessKeyId`
+    export AWS_SECRET_ACCESS_KEY=`echo $credentials | jq -r .Credentials.SecretAccessKey`
+    export AWS_SESSION_TOKEN=`echo $credentials | jq -r .Credentials.SessionToken`
 }
 
 # e.g. aws_instances --region us-west-2
