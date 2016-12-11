@@ -90,6 +90,18 @@ function aws_route_tables() {
     aws ec2 describe-route-tables $@ --query 'RouteTables[*][(Tags[?Key==`Name`].Value)[0], RouteTableId, VpcId, (Routes[?VpcPeeringConnectionId][VpcPeeringConnectionId, DestinationCidrBlock][])[1]]'  --output text | column -t | sort
 }
 
+# e.g. aws_volumes --region us-west-2
 function aws_volumes() {
     aws ec2 describe-volumes $@ --query 'Volumes[*][VolumeId, AvailabilityZone, VolumeType, Size, Iops, State, (Tags[?Key==`Name`].Value)[0]]' --output text | column -t -c 4 | sort
+}
+
+# -----------------------------------------------------------------------------
+# Docker Utilities
+# -----------------------------------------------------------------------------
+
+# e.g. docker_cleanup
+function docker_cleanup() {
+    docker rm $(docker ps -a -q)
+    docker rmi $(docker images -a | grep "^<none>" | awk '{print $3}')
+    docker images -q --filter "dangling=true" | xargs docker rmi
 }
