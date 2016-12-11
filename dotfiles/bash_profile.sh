@@ -15,6 +15,7 @@ export PATH=$PATH:$GOROOT/bin
 
 # Bash Settings
 HISTFILESIZE=10000
+HISTCONTROL=ignoreboth
 
 # -----------------------------------------------------------------------------
 # General Utilities
