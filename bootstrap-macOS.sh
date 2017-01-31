@@ -13,6 +13,7 @@ function installBrews() {
     brew upgrade
 
     local brews=(
+	asciinema
         autoconf
         automake
         awscli
