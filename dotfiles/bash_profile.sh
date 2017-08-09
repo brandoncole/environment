@@ -4,7 +4,6 @@
 alias a=aws
 alias g=gcloud
 alias k=kubectl
-alias dir="ls -la"
 
 # Environment
 export GOPATH=~/Workspace/go
@@ -37,8 +36,8 @@ function aws_profile() {
     # http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
 
     local profile=$1
-    export AWS_PROFILE=$profile
-    export AWS_DEFAULT_PROFILE=$profile
+    export AWS_PROFILE="$profile"
+    export AWS_DEFAULT_PROFILE="$profile"
 }
 
 # Performs 2FA for CLI
@@ -53,11 +52,11 @@ function aws_login() {
     unset AWS_SECRET_ACCESS_KEY
     unset AWS_SESSION_TOKEN
 
-    local credentials=`aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token`
+    local credentials="`aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token`"
 
-    export AWS_ACCESS_KEY_ID=`echo $credentials | jq -r .Credentials.AccessKeyId`
-    export AWS_SECRET_ACCESS_KEY=`echo $credentials | jq -r .Credentials.SecretAccessKey`
-    export AWS_SESSION_TOKEN=`echo $credentials | jq -r .Credentials.SessionToken`
+    export AWS_ACCESS_KEY_ID="`echo $credentials | jq -r .Credentials.AccessKeyId`"
+    export AWS_SECRET_ACCESS_KEY="`echo $credentials | jq -r .Credentials.SecretAccessKey`"
+    export AWS_SESSION_TOKEN="`echo $credentials | jq -r .Credentials.SessionToken`"
 }
 
 # e.g. aws_instances --region us-west-2
@@ -114,3 +113,7 @@ function docker_delete_image() {
     docker images | grep $image | awk {'print $3'} | xargs docker rmi
 
 }
+
+# -----------------------------------------------------------------------------
+# Docker Utilities
+# -----------------------------------------------------------------------------
