@@ -2,175 +2,164 @@
 
 function installHomebrew() {
 
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew tap caskroom/cask
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	brew tap caskroom/cask
 
 }
 
 function installBrews() {
 
-    brew update
-    brew upgrade
+	brew update
+	brew upgrade
 
-    local brews=(
-	asciinema
-        autoconf
-        automake
-        awscli
-        bash-completion
-        coreutils
-        curl
-        git
-        git-lfs
-        go
-        jq
-        kubectl
-        openssl
-        tree
-        watch
-        wget
-    )
+	local brews=(
+		asciinema
+		autoconf
+		automake
+		awscli
+		bash-completion
+		coreutils
+		curl
+		figlet
+		git
+		git-lfs
+		go
+		jq
+		kubernetes-cli
+		openssl
+		terraform
+		tree
+		watch
+		wget
+		zsh
+	)
 
-    for brew in "${brews[@]}"; do
-        brew install $brew
-    done
+	for brew in "${brews[@]}"; do
+		brew install $brew
+	done
 
-    local casks=(
-        docker
-        google-chrome
-        google-cloud-sdk
-        google-drive
-        iterm2
-        kindle
-        lastpass
-        licecap
-        skype
-        slack
-        webstorm
-    )
+	local casks=(
+		docker
+		google-chrome
+		google-cloud-sdk
+		google-drive
+		iterm2
+		kindle
+		lastpass
+		licecap
+		skype
+		slack
+		visual-studio-code
+		webstorm
+		zoom
+	)
 
-    for cask in "${casks[@]}"; do
-        brew cask install $cask
-    done
+	for cask in "${casks[@]}"; do
+		brew cask install $cask
+	done
 
-    # Open docker so that it sets itself up...
-    open -g -a Docker
+	# Open docker so that it sets itself up...
+	open -g -a Docker
 
-    # Complete lastpass installation...
-    open -a "/usr/local/Caskroom/lastpass/latest/LastPass Installer.app"
+	# Complete lastpass installation...
+	open -a "/usr/local/Caskroom/lastpass/latest/LastPass Installer.app"
 
-    brew cleanup
-
-}
-
-function installPlugins() {
-
-    # https://plugins.jetbrains.com/
-    local plugins=(
-        https://plugins.jetbrains.com/files/4230/28046/BashSupport-1.5.8.163.zip
-        https://github.com/ShyykoSerhiy/gfm-plugin/releases/download/v0.1.12/gfm-plugin.zip
-        https://plugins.jetbrains.com/files/5047/30154/Go-0.13.1896.zip
-    )
-
-    # Figure out the websorm directory.  This directory won't exist
-    # until after WebStorm launches the first time so launch it in
-    # the background.
-    echo -n "Waiting for WebStorm to launch and initialize"
-    open -g -a WebStorm
-    local plugin_dir=""
-    while [[ -z $plugin_dir ]]; do
-        echo -n .
-        sleep 1
-        plugin_dir=$(find ~/Library/Application\ Support/ -type d -iname Webstorm* | tail -n 1)
-    done
-    echo "Done!  Found Plugin Directory: $plugin_dir"
-
-    # Install all the plugins...
-    for plugin in "${plugins[@]}"; do
-        echo "Downloading $plugin..."
-        wget $plugin -O ./scratch/plugin.zip
-        unzip -o ./scratch/plugin.zip -d "$plugin_dir"
-    done
-
-    # Shut down WebStorm so that the new plugins will take effect
-    ps x | grep webstorm | head -n 1 | awk '{print $1}' | xargs kill -9
+	brew cleanup
 
 }
 
 function installDefaults() {
 
-    sudo -v
+	sudo -v
 
-    # -------------------------------------------------------------------------
-    # Keyboard
-    # -------------------------------------------------------------------------
-    defaults write -g InitialKeyRepeat -int 15
-    defaults write -g KeyRepeat -int 2
+	# -------------------------------------------------------------------------
+	# Keyboard
+	# -------------------------------------------------------------------------
+	defaults write -g InitialKeyRepeat -int 15
+	defaults write -g KeyRepeat -int 2
 
-    # -------------------------------------------------------------------------
-    # Trackpad
-    # -------------------------------------------------------------------------
-    defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+	# -------------------------------------------------------------------------
+	# Trackpad
+	# -------------------------------------------------------------------------
+	defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
 
-    # -------------------------------------------------------------------------
-    # Activity Monitor
-    # -------------------------------------------------------------------------
+	# -------------------------------------------------------------------------
+	# Activity Monitor
+	# -------------------------------------------------------------------------
 
-    # Show the main window when launching Activity Monitor
-    defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+	# Show the main window when launching Activity Monitor
+	defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
-    # Visualize CPU usage in the Activity Monitor Dock icon
-    defaults write com.apple.ActivityMonitor IconType -int 5
+	# Visualize CPU usage in the Activity Monitor Dock icon
+	defaults write com.apple.ActivityMonitor IconType -int 5
 
-    # Show all processes in Activity Monitor
-    defaults write com.apple.ActivityMonitor ShowCategory -int 0
+	# Show all processes in Activity Monitor
+	defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
-    # Sort Activity Monitor results by CPU usage
-    defaults write com.apple.ActivityMonitor SortColumn -string "CPU"
-    defaults write com.apple.ActivityMonitor SortDirection -int 0
+	# Sort Activity Monitor results by CPU usage
+	defaults write com.apple.ActivityMonitor SortColumn -string "CPU"
+	defaults write com.apple.ActivityMonitor SortDirection -int 0
 
-    # -------------------------------------------------------------------------
-    # Finder
-    # -------------------------------------------------------------------------
+	# -------------------------------------------------------------------------
+	# Finder
+	# -------------------------------------------------------------------------
 
-    # Show all extensions
-    defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+	# Show all extensions
+	defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-    # Finder: show status bar
-    defaults write com.apple.finder ShowStatusBar -bool true
+	# Finder: show status bar
+	defaults write com.apple.finder ShowStatusBar -bool true
 
-    # Finder: show path bar
-    defaults write com.apple.finder ShowPathbar -bool true
+	# Finder: show path bar
+	defaults write com.apple.finder ShowPathbar -bool true
 
-    # -------------------------------------------------------------------------
-    # iTerm2
-    # -------------------------------------------------------------------------
-    defaults write com.googlecode.iterm2 PromptOnQuit -int 0
+	# -------------------------------------------------------------------------
+	# iTerm2
+	# -------------------------------------------------------------------------
+	defaults write com.googlecode.iterm2 PromptOnQuit -int 0
 
 }
 
 function installDotfiles() {
-    cp ./dotfiles/bash_profile.sh ~/.bash_profile && source ~/.bash_profile
+	cp ./dotfiles/bash_profile.sh ~/.bash_profile && source ~/.bash_profile
+}
+
+function installOhMyZsh() {
+
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+}
+
+function installOhMyZshPlugins() {
+
+	rm -rf $ZSH_CUSTOM/plugins/zsh-autosuggestions
+	git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+	sed -i .bak 's/^plugins=(.*)$/plugins=(aws docker git kubectl web-search zsh-autosuggestions)/' ~/.zshrc
+
+	sed -E '/^.*# CUSTOM_EXTENSION/d' ~/.zshrc
+	echo "source ~/.bash_profile # CUSTOM_EXTENSION"
 }
 
 function install() {
 
-    installHomebrew
-    installBrews
-    installPlugins
-    installDefaults
-    installDotfiles
+	installHomebrew
+	installBrews
+	installDefaults
+	installDotfiles
+	installOhMyZsh
 
 }
 
 function update() {
-    installDefaults
-    installDotfiles
+	installDefaults
+	installDotfiles
+	installOhMyZshPlugins
 }
 
 if [[ -z "$1" ]]; then
-    install
+	install
 else
-    echo "Invoking $1"
-    $1
+	echo "Invoking $1"
+	$1
 fi
