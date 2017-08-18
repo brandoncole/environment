@@ -137,8 +137,11 @@ function installOhMyZshPlugins() {
 
 	sed -i .bak 's/^plugins=(.*)$/plugins=(aws docker git kubectl web-search zsh-autosuggestions)/' ~/.zshrc
 
-	sed -E '/^.*# CUSTOM_EXTENSION/d' ~/.zshrc
-	echo "source ~/.bash_profile # CUSTOM_EXTENSION"
+	sed -i .bak '/^.*# CUSTOM_EXTENSION/d' ~/.zshrc
+    cat <<EOF >> ~/.zshrc
+source ~/.bash_profile  # CUSTOM_EXTENSION
+asp                     # CUSTOM_EXTENSION
+EOF
 }
 
 function install() {
