@@ -27,6 +27,7 @@ function installBrews() {
 		jq
 		kubernetes-cli
 		openssl
+		r
 		terraform
 		tree
 		watch
@@ -42,11 +43,11 @@ function installBrews() {
 		docker
 		google-chrome
 		google-cloud-sdk
-		google-drive
 		iterm2
 		kindle
 		lastpass
 		licecap
+		rstudio
 		skype
 		slack
 		visual-studio-code
