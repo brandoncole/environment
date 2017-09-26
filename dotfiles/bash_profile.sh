@@ -113,3 +113,26 @@ function docker_delete_image() {
     docker images | grep $image | awk {'print $3'} | xargs docker rmi
 
 }
+
+# -----------------------------------------------------------------------------
+# LastPass Automation
+# -----------------------------------------------------------------------------
+function load_pass() {
+
+    local item=$1
+    local username=""
+
+    if  ! lpass status --quiet; then
+        echo "Enter LastPass Username: "
+        read username
+        lpass login $username || exit 1
+    fi
+
+    echo Loading $item from LastPass...
+    local content=$(lpass show --notes "$item")
+    if [[ ! "$content" == "" ]]; then
+        echo Evaluating $content
+        eval "$content"
+    fi
+
+}

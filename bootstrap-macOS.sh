@@ -26,6 +26,7 @@ function installBrews() {
 		go
 		jq
 		kubernetes-cli
+		lastpass-cli
 		openssl
 		r
 		terraform
@@ -135,7 +136,9 @@ function installOhMyZshPlugins() {
 
     local zsh_plugins=${ZSH:-~/.oh-my-zsh}
 	rm -rf $zsh_plugins/zsh-autosuggestions
-	git clone git://github.com/zsh-users/zsh-autosuggestions $zsh_plugins/plugins/zsh-autosuggestions
+	if [ ! -d $zsh_plugins/plugins/zsh-autosuggestions ]; then
+	    git clone git://github.com/zsh-users/zsh-autosuggestions $zsh_plugins/plugins/zsh-autosuggestions
+	fi
 
 	sed -i .bak 's/^plugins=(.*)$/plugins=(aws docker git kubectl web-search zsh-autosuggestions)/' ~/.zshrc
 
