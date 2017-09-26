@@ -48,6 +48,7 @@ function installBrews() {
 		kindle
 		lastpass
 		licecap
+		pgadmin4
 		rstudio
 		skype
 		slack
