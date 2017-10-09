@@ -28,6 +28,7 @@ function installBrews() {
 		kubernetes-cli
 		lastpass-cli
 		openssl
+		python
 		r
 		terraform
 		tree

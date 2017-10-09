@@ -131,7 +131,6 @@ function load_pass() {
     echo Loading $item from LastPass...
     local content=$(lpass show --notes "$item")
     if [[ ! "$content" == "" ]]; then
-        echo Evaluating $content
         eval "$content"
     fi
 
