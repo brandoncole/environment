@@ -139,7 +139,7 @@ function installOhMyZshPlugins() {
     local zsh_plugins=${ZSH:-~/.oh-my-zsh}
 	rm -rf $zsh_plugins/zsh-autosuggestions
 	if [ ! -d $zsh_plugins/plugins/zsh-autosuggestions ]; then
-	    git clone git://github.com/zsh-users/zsh-autosuggestions $zsh_plugins/plugins/zsh-autosuggestions
+	    git clone git://github.com/zsh-users/zsh-autosuggestions --depth=1 $zsh_plugins/plugins/zsh-autosuggestions
 	fi
 
 	sed -i .bak 's/^plugins=(.*)$/plugins=(aws docker git kubectl web-search zsh-autosuggestions)/' ~/.zshrc
@@ -147,7 +147,6 @@ function installOhMyZshPlugins() {
 	sed -i .bak '/^.*# CUSTOM_EXTENSION/d' ~/.zshrc
     cat <<EOF >> ~/.zshrc
 source ~/.bash_profile  # CUSTOM_EXTENSION
-asp                     # CUSTOM_EXTENSION
 EOF
 }
 
