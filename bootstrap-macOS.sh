@@ -29,6 +29,7 @@ function installBrews() {
 		lastpass-cli
 		openssl
 		python
+		python3
 		r
 		terraform
 		tree
@@ -43,6 +44,9 @@ function installBrews() {
 
 	local casks=(
 		docker
+		docker-toolbox
+		dotnet
+		dotnet-sdk
 		google-chrome
 		google-cloud-sdk
 		iterm2
