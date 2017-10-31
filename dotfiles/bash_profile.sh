@@ -47,11 +47,11 @@ function aws_login() {
     local user=$2
     local token=$3
 
-    unset AWS_ACCESS_KEY_ID
-    unset AWS_SECRET_ACCESS_KEY
-    unset AWS_SESSION_TOKEN
-
-    local credentials="`aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token`"
+    credentials=$(aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token) || {
+        echo ""
+        echo "Failed to get session token for account ( $account ), user ( $user ) and token ( $token )"
+        return 1
+    }
 
     export AWS_ACCESS_KEY_ID="`echo $credentials | jq -r .Credentials.AccessKeyId`"
     export AWS_SECRET_ACCESS_KEY="`echo $credentials | jq -r .Credentials.SecretAccessKey`"
