@@ -59,7 +59,7 @@ function installBrews() {
 		slack
 		visual-studio-code
 		webstorm
-		zoom
+		zoomus
 	)
 
 	for cask in "${casks[@]}"; do
