@@ -40,16 +40,15 @@ function aws_profile() {
 }
 
 # Performs 2FA for CLI
-# e.g. aws_login 1234567890 username 123456
-function aws_login() {
+# e.g. aws_mfa_login 123456
+function aws_mfa_login() {
 
-    local account=$1
-    local user=$2
-    local token=$3
+    local token=$1
 
-    credentials=$(aws sts get-session-token --serial-number arn:aws:iam::$account:mfa/$user --token-code $token) || {
+    local serial=$(aws iam get-user | jq -r '.User.Arn' | sed 's/:user/:mfa/')
+    credentials=$(aws sts get-session-token --serial-number $serial --token-code $token) || {
         echo ""
-        echo "Failed to get session token for account ( $account ), user ( $user ) and token ( $token )"
+        echo "Failed to get session token for serial number ( $serial ) and token ( $token )"
         return 1
     }
 
