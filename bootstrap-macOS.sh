@@ -29,6 +29,7 @@ function installBrews() {
 		lastpass-cli
 		openssl
 		python
+		python2
 		python3
 		r
 		terraform
@@ -71,6 +72,10 @@ function installBrews() {
 
 	# Complete lastpass installation...
 	open -a "/usr/local/Caskroom/lastpass/latest/LastPass Installer.app"
+
+	# Upgrade python...
+	pip2 install --upgrade pip setuptools
+	pip3 install --upgrade pip setuptools
 
 	brew cleanup
 
