@@ -27,7 +27,9 @@ function installBrews() {
 		jq
 		kubernetes-cli
 		lastpass-cli
+		node
 		openssl
+		pwgen
 		python
 		python2
 		python3
@@ -44,6 +46,7 @@ function installBrews() {
 	done
 
 	local casks=(
+		1password-cli
 		docker
 		docker-toolbox
 		dotnet
@@ -54,6 +57,7 @@ function installBrews() {
 		kindle
 		lastpass
 		licecap
+		minikube
 		pgadmin4
 		rstudio
 		skype
@@ -125,6 +129,9 @@ function installDefaults() {
 
 	# Finder: show path bar
 	defaults write com.apple.finder ShowPathbar -bool true
+
+	# Finder: show dotfiles
+	defaults write com.apple.finder AppleShowAllFiles -bool true
 
 	# -------------------------------------------------------------------------
 	# iTerm2
