@@ -7,7 +7,7 @@ function installHomebrew() {
 
 }
 
-function installBrews() {
+function installPackages() {
 
 	brew update
 	brew upgrade
@@ -71,6 +71,8 @@ function installBrews() {
 		brew cask install $cask
 	done
 
+	brew cleanup
+
 	# Open docker so that it sets itself up...
 	open -g -a Docker
 
@@ -81,7 +83,13 @@ function installBrews() {
 	pip2 install --upgrade pip setuptools
 	pip3 install --upgrade pip setuptools
 
-	brew cleanup
+	# Install pip packages...
+	local packages=(
+		awsudo
+	)	
+	for package in "${packages[@]}"; do
+		pip3 install --upgrade $package
+	done
 
 }
 
@@ -169,7 +177,7 @@ EOF
 function install() {
 
 	installHomebrew
-	installBrews
+	installPackages
 	installDefaults
 	installDotfiles
 	installOhMyZsh
