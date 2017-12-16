@@ -25,6 +25,7 @@ function installPackages() {
 		git-lfs
 		go
 		jq
+		kops
 		kubernetes-cli
 		lastpass-cli
 		node
