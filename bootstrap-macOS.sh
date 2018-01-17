@@ -22,11 +22,13 @@ function installPackages() {
 		curl
 		figlet
 		git
+		git-flow
 		git-lfs
 		go
 		jq
 		kops
 		kubernetes-cli
+		kubernetes-helm
 		lastpass-cli
 		node
 		openssl
