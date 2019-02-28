@@ -60,6 +60,7 @@ function installPackages() {
 		kindle
 		lastpass
 		licecap
+		microsoft-office
 		minikube
 		pgadmin4
 		rstudio
