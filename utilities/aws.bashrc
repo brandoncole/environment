@@ -1,32 +1,5 @@
 #!/usr/bin/env bash
 
-# Aliases
-alias a=aws
-alias g=gcloud
-alias k=kubectl
-
-# Environment
-export GOPATH=~/Workspace/go
-mkdir -p $GOPATH
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-# Bash Settings
-HISTFILESIZE=10000
-HISTCONTROL=ignoreboth
-
-# -----------------------------------------------------------------------------
-# General Utilities
-# -----------------------------------------------------------------------------
-function update() {
-    (cd ~/environment/ && ./bootstrap-macOS.sh update)
-}
-
-# -----------------------------------------------------------------------------
-# AWS Utilities
-# -----------------------------------------------------------------------------
-
 # Switches to a profile configured via aws configure --profile profileid
 # e.g. aws_profile profileid
 function aws_profile() {
@@ -90,46 +63,4 @@ function aws_route_tables() {
 # e.g. aws_volumes --region us-west-2
 function aws_volumes() {
     aws ec2 describe-volumes $@ --query 'Volumes[*][VolumeId, AvailabilityZone, VolumeType, Size, Iops, State, (Tags[?Key==`Name`].Value)[0]]' --output text | column -t -c 4 | sort
-}
-
-# -----------------------------------------------------------------------------
-# Docker Utilities
-# -----------------------------------------------------------------------------
-
-# e.g. docker_cleanup
-function docker_cleanup() {
-    docker rm $(docker ps -a -q)
-    docker rmi $(docker images -a | grep "^<none>" | awk '{print $3}')
-    docker images -q --filter "dangling=true" | xargs docker rmi
-}
-
-# Purges all versions of an image by name
-# e.g. docker_purge registry.com/imagename
-function docker_delete_image() {
-
-    local image=$1
-    docker images | grep $image | awk {'print $3'} | xargs docker rmi
-
-}
-
-# -----------------------------------------------------------------------------
-# LastPass Automation
-# -----------------------------------------------------------------------------
-function load_pass() {
-
-    local item=$1
-    local username=""
-
-    if  ! lpass status --quiet; then
-        echo "Enter LastPass Username: "
-        read username
-        lpass login $username || exit 1
-    fi
-
-    echo Loading $item from LastPass...
-    local content=$(lpass show --notes "$item")
-    if [[ ! "$content" == "" ]]; then
-        eval "$content"
-    fi
-
 }

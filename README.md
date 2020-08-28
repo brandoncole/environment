@@ -1,16 +1,27 @@
-# [WIP] Brandon's Environment
+# Brandon's Environment
 
-This is a WIP.
+Last Update:
 
-# Installation Steps
+- Date: 8/28/2020
+- macOS: Catalina 10.15.6
 
-1. Install XCode
+## Bootstrap Steps
 
-2. Bootstrap
+The scripts should be faily idempotent and can be run multiple times safely.
 
-    ```shell
-    DEST=~/environment
-    git clone https://github.com/brandoncole/environment $DEST
-    cd $DEST
-    ./bootstrap.sh
-    ```
+```shell
+# Clone this repo...
+git clone https://github.com/brandoncole/environment 
+cd environment
+
+# Choose your own adventure...
+./bootstrap/brews.sh
+./bootstrap/casks.sh
+./bootstrap/defaults.sh
+./bootstrap/oh-my-zsh.sh
+./bootstrap/vs-code.sh
+```
+
+## Utilities
+
+Various bash scripts that help with an assortment of things.
