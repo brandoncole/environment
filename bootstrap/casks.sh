@@ -7,6 +7,7 @@ function install() {
 
 	local casks=(
 		1password-cli
+		amazon-chime
 		docker
 		docker-toolbox
 		dotnet
