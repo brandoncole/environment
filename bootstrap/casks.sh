@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+function prereq() {
+
+}
+
 function install() {
 
     local input
+
+	prereq
 
 	local casks=(
 		1password-cli

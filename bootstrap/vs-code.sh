@@ -21,6 +21,7 @@ function install() {
         vscode-icons-team.vscode-icons
         AmazonWebServices.aws-toolkit-vscode
         ms-kubernetes-tools.vscode-kubernetes-tools
+        seunlanlege.action-buttons
     )
 
 	for ext in "${exts[@]}"; do
