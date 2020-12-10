@@ -15,7 +15,7 @@ function install() {
     local input
 
     prereq
-    
+
     brew update
     brew upgrade
 
@@ -27,6 +27,7 @@ function install() {
         bash-completion
         coreutils
         curl
+        entr
         figlet
         git
         git-flow

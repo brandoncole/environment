@@ -11,7 +11,7 @@ The scripts should be faily idempotent and can be run multiple times safely.
 
 ```shell
 # Clone this repo...
-git clone https://github.com/brandoncole/environment 
+git clone https://github.com/brandoncole/environment
 cd environment
 
 # Choose your own adventure...
@@ -19,7 +19,6 @@ cd environment
 ./bootstrap/casks.sh
 ./bootstrap/defaults.sh
 ./bootstrap/oh-my-zsh.sh
-./bootstrap/vs-code.sh
 ```
 
 ## Utilities
