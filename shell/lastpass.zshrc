@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Securely loads a password from LastPass and shows echoes it out
 # e.g. load_pass <secretname>
 function load_pass() {

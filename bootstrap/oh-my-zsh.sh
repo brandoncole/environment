@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-set -eo pipefail
+set -euo pipefail
 
 function prereq() {
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || return 0
 }
 
 function plugins() {
-    
+
     local zsh_plugins=${ZSH:-~/.oh-my-zsh}
 	rm -rf $zsh_plugins/zsh-autosuggestions
 	if [ ! -d $zsh_plugins/plugins/zsh-autosuggestions ]; then

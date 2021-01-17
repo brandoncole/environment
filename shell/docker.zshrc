@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # e.g. docker_cleanup
 function docker_cleanup() {
     docker rm $(docker ps -a -q)

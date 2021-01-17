@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Switches to a profile configured via aws configure --profile profileid
 # e.g. aws_profile profileid
 function aws_profile() {
