@@ -34,6 +34,7 @@ function install() {
         git-lfs
         git-remote-codecommit
         go
+        graphviz
         jq
         kops
         kubernetes-cli

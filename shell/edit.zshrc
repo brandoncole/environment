@@ -10,6 +10,10 @@ function edit_zshrc() {
     code ~/.zshrc
 }
 
+function edit_cache() {
+    code ~/.cache
+}
+
 function reload() {
     source ${BOOTSTRAP_HOME}/shell/.zshrc
 }

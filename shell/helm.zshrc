@@ -7,3 +7,7 @@ function helm_chart_versions() {
     local chart=${1?Chart is required. e.g. repo/chart}
     helm search repo ${chart} -l
 }
+
+function helm_list_all_json() {
+    helm list --all-namespaces -o json
+}

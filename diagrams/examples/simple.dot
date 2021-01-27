@@ -1,0 +1,23 @@
+digraph G {
+    Nana -> Brenda
+    Papaw -> Brenda
+    Papa -> Brandon
+    BigGranny -> Brandon
+    Brandon -> Avery
+    Brandon -> Charlotte
+    Brandon -> Alexis [style=dashed]
+    Avery -> Moo
+    Avery -> Ellie
+    Brenda -> Alexis
+    Brenda -> Avery [style=dashed]
+    Brenda -> Charlotte [style=dashed]
+    Alexis -> Sadie
+    Alexis -> Mochi
+    Brenda -> Callie
+    Brenda -> Finley
+    Brenda -> Annie
+    Brandon -> Kitsol
+    Charlotte -> Macie
+    Brenda -> Evie [style=dashed]
+    {rank = same; Sadie; Mochi; Callie; Finley; Annie; Kitsol; Macie; Evie; Moo; Ellie; }
+}
