@@ -40,6 +40,7 @@ function install() {
         kubernetes-cli
         kubernetes-helm
         lastpass-cli
+        libpq
         node
         openssl
         pwgen

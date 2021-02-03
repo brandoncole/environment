@@ -3,14 +3,20 @@ function crons_on() {
     config=$(cat <<EOF
 SHELL=/bin/bash
 SHELL_ENV=${HOME}/.zshrc
-0,10,20,30,40,50 * * * * bash -l ${BOOTSTRAP_HOME}/shell/cron-hourly.sh >> ${BOOTSTRAP_HOME}/backups/hourly.log
+0 * * * * bash -l ${BOOTSTRAP_HOME}/shell/cron-hourly.sh > ${BOOTSTRAP_HOME}/backups/hourly.log
 EOF
 )
     crontab <<< "${config}"
+    crontab -l
 }
 
 # e.g. crons_off
 function crons_off() {
-    echo todos
+    crontab -r
+    crontab -l
 }
 
+# e.g. crons_run_hourly
+function crons_run_hourly() {
+    ${BOOTSTRAP_HOME}/shell/cron-hourly.sh
+}

@@ -125,3 +125,8 @@ function k8s_deployment_labels() {
     kubectl get deployment -n ${namespace} ${name} -o json 2>/dev/null  |
         jq '.spec.template.metadata.labels'
 }
+
+# e.g. k8s_can_i
+function k8s_can_i() {
+    kubectl auth can-i --list
+}

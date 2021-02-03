@@ -2,10 +2,11 @@
 set -eo pipefail
 
 ENVIRONMENT_DIR=$(dirname $(dirname ${0}))
+BACKUPS_DIR=${ENVIRONMENT_DIR}/backups
 
 function backup() {
 
-    BACKUPS_DIR=${ENVIRONMENT_DIR}/backups
+
     OLD_BACKUP_ZIP=${BACKUPS_DIR}/$(gls -l ${BACKUPS_DIR} --sort=time --format=single-column | head -n1)
     NEW_BACKUP_ZIP=${BACKUPS_DIR}/$(date +%Y-%m-%d-%H-%M-%S.zip)
 
@@ -20,8 +21,20 @@ function backup() {
     if [[ "${OLD_SHA}" == "${NEW_SHA}" ]]; then
         echo No changes.  Removing ${NEW_BACKUP_ZIP}
         rm -f ${NEW_BACKUP_ZIP}
+    else
+        echo Changes detected, keeping new backup.
     fi
 
 }
 
+function rotate() {
+
+    local max_logs=5
+    gls ${BACKUPS_DIR}/*.log -t
+    gls ${BACKUPS_DIR}/*.log -t | tail -n +${max_logs}
+    gls ${BACKUPS_DIR}/*.log -t | tail -n +${max_logs} | xargs -I % echo will delete %
+
+}
+
 backup
+rotate
