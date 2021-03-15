@@ -1,0 +1,5 @@
+# git config --global core.excludesfile ${BOOTSTRAP_HOME}/.gitignore_global#
+# https://docs.github.com/en/github/using-git/ignoring-files#configuring-ignored-files-for-all-repositories-on-your-computer
+
+# VSCode
+.vscode

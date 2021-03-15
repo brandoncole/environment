@@ -1,3 +1,5 @@
+alias cdb="cd ${BOOTSTRAP_HOME}"
+
 function edit() {
     code ${BOOTSTRAP_HOME}
 }

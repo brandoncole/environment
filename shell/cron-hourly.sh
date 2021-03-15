@@ -6,7 +6,6 @@ BACKUPS_DIR=${ENVIRONMENT_DIR}/backups
 
 function backup() {
 
-
     OLD_BACKUP_ZIP=${BACKUPS_DIR}/$(gls -l ${BACKUPS_DIR} --sort=time --format=single-column | head -n1)
     NEW_BACKUP_ZIP=${BACKUPS_DIR}/$(date +%Y-%m-%d-%H-%M-%S.zip)
 
@@ -30,11 +29,12 @@ function backup() {
 function rotate() {
 
     local max_logs=5
-    gls ${BACKUPS_DIR}/*.log -t
-    gls ${BACKUPS_DIR}/*.log -t | tail -n +${max_logs}
-    gls ${BACKUPS_DIR}/*.log -t | tail -n +${max_logs} | xargs -I % echo will delete %
+    gls ${BACKUPS_DIR}/*.zip -t | tail -n +${max_logs} | xargs -I % rm %
 
 }
 
+echo Backing Up...
 backup
+
+echo Rotating...
 rotate

@@ -107,6 +107,19 @@ function k8s_server_version_cached() {
     cached "k8s/${cluster}/version.json" k8s_server_version
 }
 
+# Estimates a birthdate based on the oldest discoverable resource
+# e.g. k8s_birthdate
+function k8s_birthdate() {
+    kubectl get configmap -n kube-system -o json | jq '.items[].metadata.creationTimestamp' | sort | head -n1
+}
+
+# Estimates a birthdate based on the oldest discoverable resource
+# e.g. k8s_birthdate
+function k8s_birthdate_cached() {
+    local cluster=$(kubectl config current-context)
+    cached "k8s/${cluster}/birthdate.json" k8s_birthdate
+}
+
 # e.g. k8s_daemonset_labels <namespace> <name>
 function k8s_daemonset_labels() {
     local namespace=${1?Namespace}

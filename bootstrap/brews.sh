@@ -34,7 +34,9 @@ function install() {
         git-lfs
         git-remote-codecommit
         go
+        golang-migrate
         graphviz
+        hugo
         jq
         kops
         kubernetes-cli
