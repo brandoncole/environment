@@ -25,10 +25,12 @@ function install() {
         automake
         awscli
         bash-completion
+        bat
         coreutils
         curl
         entr
         figlet
+        fzf
         git
         git-flow
         git-lfs
@@ -38,11 +40,13 @@ function install() {
         graphviz
         hugo
         jq
+        kind
         kops
         kubernetes-cli
         kubernetes-helm
         lastpass-cli
         libpq
+        lolcat
         node
         openssl
         pwgen
