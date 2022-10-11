@@ -10,7 +10,7 @@ function plugins() {
     local zsh_plugins=${ZSH:-~/.oh-my-zsh}
 	rm -rf $zsh_plugins/zsh-autosuggestions
 	if [ ! -d $zsh_plugins/plugins/zsh-autosuggestions ]; then
-	    git clone git://github.com/zsh-users/zsh-autosuggestions --depth=1 $zsh_plugins/plugins/zsh-autosuggestions
+	    git clone git@github.com:zsh-users/zsh-autosuggestions --depth=1 $zsh_plugins/plugins/zsh-autosuggestions
 	fi
 
     local plugins=(

@@ -2,10 +2,10 @@
 
 Last Update:
 
-- Date: 8/28/2020
-- macOS: Catalina 10.15.6
+- Date: 10/11/2022
+- macOS: Monterey 12.6
 
-## Bootstrap Steps
+## Automated Steps
 
 The scripts should be faily idempotent and can be run multiple times safely.
 
@@ -21,6 +21,10 @@ cd environment
 ./bootstrap/oh-my-zsh.sh
 ```
 
-## Utilities
+## Manual Steps
 
-Various bash scripts that help with an assortment of things.
+The following steps aren't currently automated yet when transfering an old environment to a new computer but should be.
+
+1. Add `./shell/zshrc` to `~/.zshrc`
+2. Copy `~/.zsh_history` from old computer
+3. Copy `./private` from old computer
