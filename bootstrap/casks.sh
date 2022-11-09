@@ -37,16 +37,20 @@ function install() {
 		zoomus
 	)
 
+    local installs=()
+
 	for cask in "${casks[@]}"; do
         echo "Install ${cask}? (Enter 'y' to install or any other key to skip)"
         read -s -n 1 input
         if [ $input == "y" ]; then
-            echo Installing ${cask}...
-            brew install --cask ${cask}
-        else
-            echo Skipping ${cask}
+            installs+=($cask)
         fi
 	done
+
+    for install in "${installs[@]}"; do
+        echo Installing ${install}...
+        brew install ${install}
+    done
 
 }
 

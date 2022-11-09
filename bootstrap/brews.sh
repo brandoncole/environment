@@ -59,16 +59,20 @@ function install() {
         wget
     )
 
+    local installs=()
+
 	for brew in "${brews[@]}"; do
         echo "Install ${brew}? (Enter 'y' to install or any other key to skip)"
         read -s -n 1 input
         if [ $input == "y" ]; then
-            echo Installing ${brew}...
-            brew install ${brew}
-        else
-            echo Skipping ${brew}
+            installs+=($brew)
         fi
 	done
+
+    for install in "${installs[@]}"; do
+        echo Installing ${install}...
+        brew install ${install}
+    done
 
 }
 
