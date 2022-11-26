@@ -38,6 +38,7 @@ function install() {
         go
         golang-migrate
         graphviz
+        grpc_cli
         hugo
         jq
         kind
@@ -57,6 +58,7 @@ function install() {
         tree
         watch
         wget
+        yq
     )
 
     local installs=()

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+ourpath=$_
 set -euo pipefail
+
 
 function prereq() {
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || return 0
@@ -31,10 +33,21 @@ function plugins() {
 
 }
 
+function zshrc() {
+
+    rcfile=$(realpath $(dirname $(dirname ${ourpath}))/shell/.zshrc)
+    if ! cat ~/.zshrc | grep -q $rcfile; then
+        echo "Adding $rcfile to $(realpath ~/.zshrc)"
+        echo "source $rcfile" >> ~/.zshrc
+    fi
+
+}
+
 function install() {
 
 	prereq
     plugins
+    zshrc
 
 }
 
